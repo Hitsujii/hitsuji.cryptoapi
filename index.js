@@ -75,7 +75,7 @@ const waluta = [
 ]
 const nividia = [
     {
-        RTX3090ti_ETH_MOC: 	132.09,
+        RTX3090ti_ETH_MOC: 132.09,
         RTX3090ti_ETH_WATY: 338,
         RTX3090ti_BEAM_MOC: 55,
         RTX3090ti_BEAM_WATY: 320,
@@ -157,7 +157,6 @@ const nividia = [
         RTX2080ti_CTX_WATY: 170,
 
 
-
     }
 ]
 const amd = [
@@ -222,34 +221,31 @@ const dane = [{
     mnoznik2: 13.68,
 }]
 const priceETH = []
-const networkHashRateETH=[]
-const blockrewardETH=[]
+const networkHashRateETH = []
+const blockrewardETH = []
 const priceBEAM = []
-const networkHashRateBEAM=[]
-const blockrewardBEAM=[]
+const networkHashRateBEAM = []
+const blockrewardBEAM = []
 const priceRVN = []
-const networkHashRateRVN=[]
-const blockrewardRVN=[]
+const networkHashRateRVN = []
+const blockrewardRVN = []
 const priceCTX = []
-const networkHashRateCTX=[]
-const blockrewardCTX=[]
-const walutazl=[]
+const networkHashRateCTX = []
+const blockrewardCTX = []
+const walutazl = []
 
 
-
-
-app.get('/',(req, res)=>{
+app.get('/', (req, res) => {
     res.json('Witaj w mojej kuchni')
 })
-app.get("/crypto", async (req, res) =>
-{
+app.get("/crypto", (req, res) => {
 
     crypto.forEach(crypto => {
         axios.get(crypto.address)
-            .then(response =>{
+            .then(response => {
                 const html = response.data
                 const $ = cheerio.load(html)
-                $('.briNjb',html).each(function lol1(){
+                $('.briNjb', html).each(function lol1() {
                     const price = $(this).text()
                     const price2 = parseFloat(price.replace(',', ''))
                     priceETH.shift()
@@ -258,7 +254,7 @@ app.get("/crypto", async (req, res) =>
                     })
                 })
 
-                $('.hash-value',html).each(function lol2(){
+                $('.hash-value', html).each(function lol2() {
                     const network = $(this).text()
                     const network2 = parseFloat(network)
                     networkHashRateETH.shift()
@@ -268,10 +264,10 @@ app.get("/crypto", async (req, res) =>
 
 
                 })
-                $('div.textfill-block.reward-info.flex.justify-center',html).each(function lol3(){
+                $('div.textfill-block.reward-info.flex.justify-center', html).each(function lol3() {
                     const block = $(this).text()
                     const block2 = parseFloat(block)
-                    const block3 = block2/1000
+                    const block3 = block2 / 1000
                     blockrewardETH.shift()
                     blockrewardETH.push({
                         Block: block2
@@ -285,10 +281,10 @@ app.get("/crypto", async (req, res) =>
     })
     beam.forEach(beam => {
         axios.get(beam.address)
-            .then(response =>{
+            .then(response => {
                 const html = response.data
                 const $ = cheerio.load(html)
-                $('.css-12ujz79',html).each(function lol1(){
+                $('.css-12ujz79', html).each(function lol1() {
                     const price = $(this).text()
                     const price2 = parseFloat(price.replace('$', ''))
                     priceBEAM.shift()
@@ -297,7 +293,7 @@ app.get("/crypto", async (req, res) =>
                     })
                 })
 
-                $('.hash-value',html).each(function lol2(){
+                $('.hash-value', html).each(function lol2() {
                     const network = $(this).text()
                     const network2 = parseFloat(network)
                     networkHashRateBEAM.shift()
@@ -307,10 +303,10 @@ app.get("/crypto", async (req, res) =>
 
 
                 })
-                $('div.textfill-block.reward-info.flex.justify-center',html).each(function lol3(){
+                $('div.textfill-block.reward-info.flex.justify-center', html).each(function lol3() {
                     const block = $(this).text()
                     const block2 = parseFloat(block)
-                    const block3 = block2/1000
+                    const block3 = block2 / 1000
                     blockrewardBEAM.shift()
                     blockrewardBEAM.push({
                         Block: block2
@@ -324,10 +320,10 @@ app.get("/crypto", async (req, res) =>
     })
     rvn.forEach(rvn => {
         axios.get(rvn.address)
-            .then(response =>{
+            .then(response => {
                 const html = response.data
                 const $ = cheerio.load(html)
-                $('.css-12ujz79',html).each(function lol1(){
+                $('.css-12ujz79', html).each(function lol1() {
                     const price = $(this).text()
                     const price2 = parseFloat(price.replace('$', ''))
                     priceRVN.shift()
@@ -336,7 +332,7 @@ app.get("/crypto", async (req, res) =>
                     })
                 })
 
-                $('.hash-value',html).each(function lol2(){
+                $('.hash-value', html).each(function lol2() {
                     const network = $(this).text()
                     const network2 = parseFloat(network)
                     networkHashRateRVN.shift()
@@ -346,10 +342,10 @@ app.get("/crypto", async (req, res) =>
 
 
                 })
-                $('div.textfill-block.reward-info.flex.justify-center',html).each(function lol3(){
+                $('div.textfill-block.reward-info.flex.justify-center', html).each(function lol3() {
                     const block = $(this).text()
                     const block2 = parseFloat(block)
-                    const block3 = block2/1000
+                    const block3 = block2 / 1000
                     blockrewardRVN.shift()
                     blockrewardRVN.push({
                         Block: block2
@@ -363,10 +359,10 @@ app.get("/crypto", async (req, res) =>
     })
     ctx.forEach(ctx => {
         axios.get(ctx.address)
-            .then(response =>{
+            .then(response => {
                 const html = response.data
                 const $ = cheerio.load(html)
-                $('.css-12ujz79',html).each(function lol1(){
+                $('.css-12ujz79', html).each(function lol1() {
                     const price = $(this).text()
                     const price2 = parseFloat(price.replace('$', ''))
                     priceCTX.shift()
@@ -375,7 +371,7 @@ app.get("/crypto", async (req, res) =>
                     })
                 })
 
-                $('.hash-value',html).each(function lol2(){
+                $('.hash-value', html).each(function lol2() {
                     const network = $(this).text()
                     const network2 = parseFloat(network)
                     networkHashRateCTX.shift()
@@ -385,10 +381,10 @@ app.get("/crypto", async (req, res) =>
 
 
                 })
-                $('div.textfill-block.reward-info.flex.justify-center',html).each(function lol3(){
+                $('div.textfill-block.reward-info.flex.justify-center', html).each(function lol3() {
                     const block = $(this).text()
                     const block2 = parseFloat(block)
-                    const block3 = block2/1000
+                    const block3 = block2 / 1000
                     blockrewardCTX.shift()
                     blockrewardCTX.push({
                         Block: block2
@@ -402,19 +398,18 @@ app.get("/crypto", async (req, res) =>
     })
     waluta.forEach(waluta => {
         axios.get(waluta.address)
-            .then(response =>{
+            .then(response => {
                 const html = response.data
                 const $ = cheerio.load(html)
-                $('.profilLast',html).each(function lol3(){
+                $('.profilLast', html).each(function lol3() {
                     const zll = $(this).text()
-                    const zll2 = parseFloat(zll.replace(',','.'))
-                    if(walutazl.length===0){
+                    const zll2 = parseFloat(zll.replace(',', '.'))
+                    if (walutazl.length === 0) {
                         console.log(`Posiada ${walutazl.length}`)
                         walutazl.push({
                             przewalutowanie: zll2
                         })
-                    }
-                    else{
+                    } else {
                         walutazl.shift()
                         walutazl.push({
                             przewalutowanie: zll2
@@ -422,52 +417,33 @@ app.get("/crypto", async (req, res) =>
                     }
 
 
-
-
                 })
 
             })
 
     })
-res.json({
-    priceETH,
-    networkHashRateETH,
-    blockrewardETH,
-    priceBEAM,
-    networkHashRateBEAM,
-    blockrewardBEAM,
-    priceRVN,
-    networkHashRateRVN,
-    blockrewardRVN,
-    priceCTX,
-    networkHashRateCTX,
-    blockrewardCTX,
-    nividia,
-    amd,
-    dane,
-    walutazl
+    res.json({
+        priceETH,
+        networkHashRateETH,
+        blockrewardETH,
+        priceBEAM,
+        networkHashRateBEAM,
+        blockrewardBEAM,
+        priceRVN,
+        networkHashRateRVN,
+        blockrewardRVN,
+        priceCTX,
+        networkHashRateCTX,
+        blockrewardCTX,
+        nividia,
+        amd,
+        dane,
+        walutazl
 
-})
-
-
-
-
-
-
-
-
+    })
 
 
 })
 
 
-
-
-
-
-
-
-
-
-
-app.listen(PORT, ()=> console.log(`serwer dziala na PORT ${PORT}`))
+app.listen(PORT, () => console.log(`serwer dziala na PORT ${PORT}`))
